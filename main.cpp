@@ -20,12 +20,22 @@ struct tm * DatePlusDays(struct tm* date, int days)
 enum Vstup{
 	novyDodavatel=0,
 	novyZakaznik,
-	novaPredajna
+	novaPredajna,
+	novyTypMineralnychVod,
+	novaDodavkaMineralnychVod,
+	zaevidovaniePoziadavkyOdZakaznika,
+	kontrolaPoziadaviekOdZakaznikovAMnozstvaVodNaSklade,
+	vyskladnenie,
 };
 string vypis[] = {
 	std::to_string(novyDodavatel) + ". Pridaj noveho Dodavatela\n",
 	std::to_string(novyZakaznik) + ". Pridaj noveho Zakaznika\n",
-	std::to_string(novaPredajna) + ". Pridanie novej Predajne konkretneho Zakaznika\n"
+	std::to_string(novaPredajna) + ". Pridanie novej Predajne konkretneho Zakaznika\n",
+	std::to_string(novyTypMineralnychVod) + ". Pridanie noveho Typu Mineralnych Vod\n",
+	std::to_string(novaDodavkaMineralnychVod) + ". Zaevidovanie novej Dodavky Mineralnych Vod\n",
+	std::to_string(zaevidovaniePoziadavkyOdZakaznika) + ". Zaevidovanie Poziadavky od Zakaznika\n",
+	std::to_string(kontrolaPoziadaviekOdZakaznikovAMnozstvaVodNaSklade) + ". Kontrola Poziadaviek od Zakaznikov a Mnozstva Vod na Sklade\n",
+	std::to_string(vyskladnenie) + ". Vyskladnenie\n",
 };
 
 void Vypis() {
@@ -75,6 +85,26 @@ int main() {
 				break;
 			case novaPredajna:
 				cout << vypis[novaPredajna];
+				bezi = false;
+				break;
+			case novyTypMineralnychVod:
+				cout << vypis[novyTypMineralnychVod];
+				bezi = false;
+				break;
+			case novaDodavkaMineralnychVod:
+				cout << vypis[novaDodavkaMineralnychVod];
+				bezi = false;
+				break;
+			case zaevidovaniePoziadavkyOdZakaznika:
+				cout << vypis[zaevidovaniePoziadavkyOdZakaznika];
+				bezi = false;
+				break;
+			case kontrolaPoziadaviekOdZakaznikovAMnozstvaVodNaSklade:
+				cout << vypis[kontrolaPoziadaviekOdZakaznikovAMnozstvaVodNaSklade];
+				bezi = false;
+				break;
+			case vyskladnenie:
+				cout << vypis[vyskladnenie];
 				bezi = false;
 				break;
 			default:
