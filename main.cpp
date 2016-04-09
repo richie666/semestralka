@@ -26,6 +26,17 @@ enum Vstup{
 	zaevidovaniePoziadavkyOdZakaznika,
 	kontrolaPoziadaviekOdZakaznikovAMnozstvaVodNaSklade,
 	vyskladnenie,
+	odovzdanieTovaruZakaznikovi,
+	vypisanieAktualnehoMnozstvaJednotlivychTypobMVnaSklade,
+	vyhladanieOdberatelaCOnajMnozstvoKonkrTMV,
+	vyhladanieOdberatelaCOnajMnozstvoMVodKonkrDod,
+	vypisanieVestkychPoziadOdVsetOdberKtSaNepodariloZreal,
+	vyhladanieDodavPoKtMVbolZaDaneCOnajDopyt,
+	ulozenieDoSuboruAktStavEv,
+	nacitanieZoSuboruAktStavEv,
+	vypisHlM,
+	koniec,
+	moznosti
 };
 string vypis[] = {
 	std::to_string(novyDodavatel) + ". Pridaj noveho Dodavatela\n",
@@ -36,10 +47,21 @@ string vypis[] = {
 	std::to_string(zaevidovaniePoziadavkyOdZakaznika) + ". Zaevidovanie Poziadavky od Zakaznika\n",
 	std::to_string(kontrolaPoziadaviekOdZakaznikovAMnozstvaVodNaSklade) + ". Kontrola Poziadaviek od Zakaznikov a Mnozstva Vod na Sklade\n",
 	std::to_string(vyskladnenie) + ". Vyskladnenie\n",
+	std::to_string(odovzdanieTovaruZakaznikovi) + ". Odovzdanie Tovaru Zakaznikovi\n",
+	std::to_string(vypisanieAktualnehoMnozstvaJednotlivychTypobMVnaSklade) + ". Vypisanie aktualneho Mnozstva jednotlivych Typov Mineralnych Vod na Sklade\n",
+	std::to_string(vyhladanieOdberatelaCOnajMnozstvoKonkrTMV) + ". Vyhladanie Odberatela, ktory za dane Casove Obdobie odobral najvacsie Mnozstvo konkretneho Typu Mineralnej Vody\n",
+	std::to_string(vyhladanieOdberatelaCOnajMnozstvoMVodKonkrDod) + ". Vyhladanie Odberatela, ktory za dane Casove Obdobie odobral najvacsie Mnozstvo Mineralnych Vod od konkretneho Dodavatela\n",
+	std::to_string(vypisanieVestkychPoziadOdVsetOdberKtSaNepodariloZreal) + ". Vypisanie vsetkych poziadaviek od vsetkych Odberatelov, ktore sa nepodarilo zrealizovat\n",
+	std::to_string(vyhladanieDodavPoKtMVbolZaDaneCOnajDopyt) + ". Vyhladanie Dodavatela, po ktoreho Mineralnych Vodach bol za dane casove obdobie najvacsi dopyt\n",
+	std::to_string(ulozenieDoSuboruAktStavEv) + ". Ulozenie do suboru aktualny stav evidencie\n",
+	std::to_string(nacitanieZoSuboruAktStavEv) + ". Nacitanie zo suboru aktualny stav evidencie\n",
+	std::to_string(vypisHlM) + ". Vypis Hlavneho Menu\n",
+	std::to_string(koniec) + ". Koniec\n",
+	"*** Zadajte cislo moznosti! ***\n"
 };
 
 void Vypis() {
-	for (int i = 0; i < std::extent< decltype(vypis) >::value; i++){
+	for (int i = 0; i < 19; i++){
 		cout << vypis[i];
 	}
 }
@@ -53,7 +75,7 @@ void Vypis() {
 	cout << "7. Kontrola Poziadaviek od Zakaznikov a Mnozstva Vod na Sklade\n";
 	cout << "8. Vyskladnenie\n";
 	cout << "9. Odovzdanie Tovaru Zakaznikovi\n";
-	cout << "10. Vypisasnie aktualneho Mnozstva jednotlivych Typov Mineralnych Vod na Sklade\n";
+	cout << "10. Vypisanie aktualneho Mnozstva jednotlivych Typov Mineralnych Vod na Sklade\n";
 	cout << "11. Vyhladanie Odberatela, ktory za dane Casove Obdobie odobral najvacsie Mnozstvo konkretneho Typu Mineralnej Vody\n";
 	cout << "12. Vyhladanie Odberatela, ktory za dane Casove Obdobie odobral najvacsie Mnozstvo Mineralnych Vod od konkretneho Dodavatela\n";
 	cout << "13. Vypisanie vsetkych poziadaviek od vsetkych Odberatelov, ktore sa nepodarilo zrealizovat\n";
@@ -105,6 +127,46 @@ int main() {
 				break;
 			case vyskladnenie:
 				cout << vypis[vyskladnenie];
+				bezi = false;
+				break;
+			case odovzdanieTovaruZakaznikovi:
+				cout << vypis[odovzdanieTovaruZakaznikovi];
+				bezi = false;
+				break;
+			case vypisanieAktualnehoMnozstvaJednotlivychTypobMVnaSklade:
+				cout << vypis[vypisanieAktualnehoMnozstvaJednotlivychTypobMVnaSklade];
+				bezi = false;
+				break;
+			case vyhladanieOdberatelaCOnajMnozstvoKonkrTMV:
+				cout << vypis[vyhladanieOdberatelaCOnajMnozstvoKonkrTMV];
+				bezi = false;
+				break;
+			case vyhladanieOdberatelaCOnajMnozstvoMVodKonkrDod:
+				cout << vypis[vyhladanieOdberatelaCOnajMnozstvoMVodKonkrDod];
+				bezi = false;
+				break;
+			case vypisanieVestkychPoziadOdVsetOdberKtSaNepodariloZreal:
+				cout << vypis[vypisanieVestkychPoziadOdVsetOdberKtSaNepodariloZreal];
+				bezi = false;
+				break;
+			case vyhladanieDodavPoKtMVbolZaDaneCOnajDopyt:
+				cout << vypis[vyhladanieDodavPoKtMVbolZaDaneCOnajDopyt];
+				bezi = false;
+				break;
+			case ulozenieDoSuboruAktStavEv:
+				cout << vypis[ulozenieDoSuboruAktStavEv];
+				bezi = false;
+				break;
+			case nacitanieZoSuboruAktStavEv:
+				cout << vypis[nacitanieZoSuboruAktStavEv];
+				bezi = false;
+				break;
+			case vypisHlM:
+				cout << vypis[vypisHlM];
+				bezi = false;
+				break;
+			case koniec:
+				cout << vypis[koniec];
 				bezi = false;
 				break;
 			default:
