@@ -13,11 +13,27 @@ struct tm * DatePlusDays(struct tm* date, int days)
 
 	// Update caller's date
 	// Use localtime because mktime converts to UTC so may change date
-	//return (*localtime)(&date_seconds); 
+	//return (*localtime)(&date_seconds);
 }*/
 
 
-void Vypis() {
+enum Vstup{
+	novyDodavatel=0,
+	novyZakaznik,
+	novaPredajna
+};
+
+for (int i = 0; i < std::extent< decltype(vypis) >::value; i++){
+			cout << vypis[i];
+}
+
+string vypis[] = {
+	std::to_string(novyDodavatel) + ". Pridaj noveho Dodavatela\n",
+	std::to_string(novyZakaznik) + ". Pridaj noveho Zakaznika\n",
+	std::to_string(novaPredajna) + ". Pridanie novej Predajne konkretneho Zakaznika\n"
+};
+
+/*void Vypis() {
 	cout << "1. Pridaj noveho Dodavatela\n";
 	cout << "2. Pridaj noveho Zakaznika\n";
 	cout << "3. Pridanie novej Predajne konkretneho Zakaznika\n";
@@ -34,19 +50,37 @@ void Vypis() {
 	cout << "14. Vyhladanie Dodavatela, po ktoreho Mineralnych Vodach bol za dane casove obdobie najvacsi dopyt\n";
 	cout << "15. Ulozenie do suboru aktualny stav evidencie\n";
 	cout << "16. Nacitanie zo suboru aktualny stav evidencie\n";
-	cout << "17. Vypis Hlavneho Menu\n"; 
+	cout << "17. Vypis Hlavneho Menu\n";
 	cout << "0. Koniec\n";
 	cout << "*** Zadajte cislo moznosti! ***\n";
-}
+}*/
 
 int main() {
-	string i;
+	int i;
 	bool bezi = true;
 	Vypis();
 
 	while (bezi)
 	{
 		cin >> i;
+        switch (i)
+		{
+			case novyDodavatel:
+				cout << vypis[novyDodavatel];
+				bezi = false;
+				break;
+			case novyZakaznik:
+				cout << vypis[novyZakaznik];
+				bezi = false;
+				break;
+			case novaPredajna:
+				cout << vypis[novaPredajna];
+				bezi = false;
+				break;
+			default:
+				continue;
+				break;
+		}/*
 		if (i == "0") {
 			bezi = false;
 		}
@@ -146,15 +180,15 @@ int main() {
 		else if (i == "7") {
 			cout << "7. Kontrola Poziadaviek od Zakaznikov a Mnozstva Vod na Sklade\n";
 			//TODO Po vykonaní tejto operácie sa vypíše zoznam tých minerálnych vôd, ktorých množstvo na sklade je menšie
-			//ako je množstvo požadované zákazníkmi.Údaje musia by vypísané v abecednom poradí pod¾a názvu dodávate¾a 
+			//ako je množstvo požadované zákazníkmi.Údaje musia by vypísané v abecednom poradí pod¾a názvu dodávate¾a
 			//a názvu minerálnej vody.Vo výpise musí by aj chýbajúce množstvo jednotlivých minerálnych vôd.
 		}
 		else if (i == "8") {
 			cout << "8. Vyskladnenie\n";
 			//TODO V tomto prípade je nutné pripravi kontajner minerálnych vôd, ktoré	musia by doruèené nasledujúci deò.
-			//Doruèovanie prebieha pomocou auta, ktoré rozváža vody k jednotlivým zákazníkom v poradí pod¾a ich zonácie, 
+			//Doruèovanie prebieha pomocou auta, ktoré rozváža vody k jednotlivým zákazníkom v poradí pod¾a ich zonácie,
 			//t.j.na dne kontajnera musia by vody ktoré, je potrebné doruèi do predajní v zóne k, nad nimi sa nachádzajú vody,
-			//ktoré sa doruèia do predajní v zóne k - 1, ..., na vrchu sú vody, ktoré sa doruèia do predajní v zóne 1. 
+			//ktoré sa doruèia do predajní v zóne k - 1, ..., na vrchu sú vody, ktoré sa doruèia do predajní v zóne 1.
 			//Pri vyskladnení je ïalej nutné zoh¾adni dátum plnenia, t.j.vyskladòujú sa minerálne vody s najskorším dátumom plnenia.
 			//V prípade požiadavky, ktorá sa nedá zrealizova(t.j.požaduje sa viac minerálnej vody, ako je jej množstvo na sklade),
 			//sa táto oznaèí za nezrealizovanú.Vyskladnené minerálne vody je nutné odpísa zo skladu.
@@ -201,6 +235,6 @@ int main() {
 		else {
 			cout << "Zadali ste neplatny vstup!\n";
 		}
-		i = "99";		
+		i = "99";*/
 	}
 }
