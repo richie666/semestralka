@@ -22,17 +22,17 @@ enum Vstup{
 	novyZakaznik,
 	novaPredajna
 };
-
-for (int i = 0; i < std::extent< decltype(vypis) >::value; i++){
-			cout << vypis[i];
-}
-
 string vypis[] = {
 	std::to_string(novyDodavatel) + ". Pridaj noveho Dodavatela\n",
 	std::to_string(novyZakaznik) + ". Pridaj noveho Zakaznika\n",
 	std::to_string(novaPredajna) + ". Pridanie novej Predajne konkretneho Zakaznika\n"
 };
 
+void Vypis() {
+	for (int i = 0; i < std::extent< decltype(vypis) >::value; i++){
+		cout << vypis[i];
+	}
+}
 /*void Vypis() {
 	cout << "1. Pridaj noveho Dodavatela\n";
 	cout << "2. Pridaj noveho Zakaznika\n";
@@ -237,4 +237,5 @@ int main() {
 		}
 		i = "99";*/
 	}
+	return 0;
 }
