@@ -18,7 +18,7 @@ struct tm * DatePlusDays(struct tm* date, int days)
 
 
 enum Vstup{
-	novyDodavatel=0,
+	novyDodavatel=1,
 	novyZakaznik,
 	novaPredajna,
 	novyTypMineralnychVod,
@@ -88,14 +88,15 @@ void Vypis() {
 }*/
 
 int main() {
-	int i;
 	bool bezi = true;
 	Vypis();
 
 	while (bezi)
 	{
-		cin >> i;
-        switch (i)
+		cout << "Zaj cislo";
+		string vstup;
+		cin >> vstup;
+        switch (atoi(vstup.c_str()))
 		{
 			case novyDodavatel:
 				cout << vypis[novyDodavatel];
