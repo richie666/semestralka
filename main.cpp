@@ -1,8 +1,10 @@
 #include<iostream>
 #include<time.h>
 #include<string>
+#include"Array.h"
 
 using namespace std;
+using namespace DS;
 /*
 struct tm * DatePlusDays(struct tm* date, int days)
 {
@@ -38,7 +40,17 @@ enum Vstup{
 	koniec,
 	moznosti
 };
-string vypis[] = {
+
+const size_t pocetMoznosti = 18;
+
+Array<string> vypis(pocetMoznosti);
+void initVypis()
+{
+	vypis[0]=((novyDodavatel)+". Pridaj noveho Dodavatela\n");
+	vypis[1]=((novyZakaznik)+". Pridaj noveho Zakaznika\n");
+}
+
+string vypis2[] = {
 	std::to_string(novyDodavatel) + ". Pridaj noveho Dodavatela\n",
 	std::to_string(novyZakaznik) + ". Pridaj noveho Zakaznika\n",
 	std::to_string(novaPredajna) + ". Pridanie novej Predajne konkretneho Zakaznika\n",
@@ -61,7 +73,7 @@ string vypis[] = {
 };
 
 void Vypis() {
-	for (int i = 0; i < 19; i++){
+	for (int i = 0; i < vypis.size(); i++){
 		cout << vypis[i];
 	}
 }
@@ -88,6 +100,7 @@ void Vypis() {
 }*/
 
 int main() {
+	initVypis();
 	bool bezi = true;
 	Vypis();
 
