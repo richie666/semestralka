@@ -2,6 +2,7 @@
 
 using namespace Semestralka;
 using namespace DS;
+#include<fstream>
 
 
 Velkosklad::Velkosklad() :
@@ -220,8 +221,39 @@ void Semestralka::Velkosklad::vypisNezrealizovatelnychPoziadaviek()
 
 void Semestralka::Velkosklad::ulozitDoSuboru()
 {
+	remove(subor_s_evidenciou.c_str());
+	ofstream evidencia(subor_s_evidenciou.c_str());
+
+	//zapis dodavatelov:
+	evidencia << novyDodavatel << endl;
+	for (Dodavatel *dodavatel : listDodavatelov_)
+		evidencia << dodavatel->toString() << endl;
 }
 
 void Semestralka::Velkosklad::nacitatZoSuboru()
 {
+	ifstream evidencia(subor_s_evidenciou.c_str());
+	if (evidencia.is_open())
+	{
+		string typ;
+		getline(evidencia,typ);
+		while (!evidencia.eof())
+		{
+			switch (atoi(typ.c_str()))
+			{
+			case 1:
+			{
+				string obchodnyNazov;
+				string adresaDodavatela;
+				pridajNovehoDodavatela(obchodnyNazov, adresaDodavatela);
+				break;
+			}
+			default:
+			{
+				throw runtime_error("Chyba citanej databazy. Neocakavany vstup");
+				break;
+			}
+			}
+		}
+	}
 }

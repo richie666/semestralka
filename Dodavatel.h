@@ -11,6 +11,7 @@ namespace Semestralka {
 		virtual ~Dodavatel();
 		string dajObchodnyNazov();
 		string dajAdresuSidla();
+		string toString();
 	private:
 		string obchodnyNazov_;
 		string adresaSidla_;

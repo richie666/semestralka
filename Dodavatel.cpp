@@ -18,3 +18,8 @@ string Semestralka::Dodavatel::dajAdresuSidla()
 {
 	return adresaSidla_;
 }
+
+string Semestralka::Dodavatel::toString()
+{
+	return obchodnyNazov_ + "\r\n" + adresaSidla_;
+}

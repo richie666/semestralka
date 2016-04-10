@@ -20,29 +20,6 @@ struct tm * DatePlusDays(struct tm* date, int days)
 	//return (*localtime)(&date_seconds);
 }*/
 
-
-enum Vstup{
-	novyDodavatel=1,
-	novyZakaznik,
-	novaPredajna,
-	novyTypMineralnychVod,
-	novaDodavkaMineralnychVod,
-	zaevidovaniePoziadavkyOdZakaznika,
-	kontrolaPoziadaviekOdZakaznikovAMnozstvaVodNaSklade,
-	vyskladnenie,
-	odovzdanieTovaruZakaznikovi,
-	vypisanieAktualnehoMnozstvaJednotlivychTypobMVnaSklade,
-	vyhladanieOdberatelaCOnajMnozstvoKonkrTMV,
-	vyhladanieOdberatelaCOnajMnozstvoMVodKonkrDod,
-	vypisanieVestkychPoziadOdVsetOdberKtSaNepodariloZreal,
-	vyhladanieDodavPoKtMVbolZaDaneCOnajDopyt,
-	ulozenieDoSuboruAktStavEv,
-	nacitanieZoSuboruAktStavEv,
-	vypisHlM,
-	koniec,
-	moznosti
-};
-
 const size_t pocetMoznosti = 18;
 
 Array<string> vypis(pocetMoznosti);
@@ -79,7 +56,7 @@ int main() {
 	initVypis();
 	bool bezi = true;
 	Vypis();
-	Velkosklad velkosklad;
+	Velkosklad *velkosklad = new Velkosklad();
 	while (bezi)
 	{
 		cout << "Zadaj cislo";
@@ -94,14 +71,13 @@ int main() {
 			cout << "Zadaj Obchodny Nazov Dodavatela: \n";
 			string obchodnyNazov;
 			getline(cin, obchodnyNazov);
-			getline(cin, obchodnyNazov);
 			cout << "Zadali ste Obchodny Nazov Dodavatela: " << obchodnyNazov << " " << endl;
 
 			cout << "Zadaj Adresu Sidla Dodavatela: \n";
 			string adresaDodavatela;
 			getline(cin, adresaDodavatela);
 			cout << "Zadali ste Adresu Sidla Dodavatela: " << adresaDodavatela << "\n";
-			velkosklad.pridajNovehoDodavatela(obchodnyNazov, adresaDodavatela);
+			velkosklad->pridajNovehoDodavatela(obchodnyNazov, adresaDodavatela);
 			break;
 		}
 		case novyZakaznik: {
@@ -258,14 +234,16 @@ int main() {
 			}
 			case ulozenieDoSuboruAktStavEv: {
 				cout << vypis[ulozenieDoSuboruAktStavEv];
+				velkosklad->ulozitDoSuboru();
 				//TODO
-				bezi = false;
 				break;
 			}
 			case nacitanieZoSuboruAktStavEv: {
 				cout << vypis[nacitanieZoSuboruAktStavEv];
+				delete velkosklad;
+				velkosklad = new Velkosklad();
+				velkosklad->nacitatZoSuboru();
 				//TODO
-				bezi = false;
 				break;
 			}
 			case vypisHlM: {
@@ -286,5 +264,6 @@ int main() {
 			}
 		}
 	}
+	delete velkosklad;
 	return 0;
 }

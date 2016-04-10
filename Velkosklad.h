@@ -20,6 +20,29 @@ using namespace DS;
 using namespace std;
 
 namespace Semestralka {
+
+	enum Vstup{
+		novyDodavatel = 1,
+		novyZakaznik,
+		novaPredajna,
+		novyTypMineralnychVod,
+		novaDodavkaMineralnychVod,
+		zaevidovaniePoziadavkyOdZakaznika,
+		kontrolaPoziadaviekOdZakaznikovAMnozstvaVodNaSklade,
+		vyskladnenie,
+		odovzdanieTovaruZakaznikovi,
+		vypisanieAktualnehoMnozstvaJednotlivychTypobMVnaSklade,
+		vyhladanieOdberatelaCOnajMnozstvoKonkrTMV,
+		vyhladanieOdberatelaCOnajMnozstvoMVodKonkrDod,
+		vypisanieVestkychPoziadOdVsetOdberKtSaNepodariloZreal,
+		vyhladanieDodavPoKtMVbolZaDaneCOnajDopyt,
+		ulozenieDoSuboruAktStavEv,
+		nacitanieZoSuboruAktStavEv,
+		vypisHlM,
+		koniec,
+		moznosti
+	};
+
 	class Velkosklad {
 		
 	public:
@@ -55,5 +78,6 @@ namespace Semestralka {
 		Datum* datum_;
 		PriorityQueue_Heap<Poziadavka*> kontajner_;
 		LinkedList<Poziadavka*> listNezrealizovanychPoziadaviek_;
+		string subor_s_evidenciou = "evidencia.txt";
 	};
 }
