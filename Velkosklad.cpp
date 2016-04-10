@@ -9,7 +9,7 @@ Velkosklad::Velkosklad() :
 	listDodavatelov_(), listZakaznikov_(), listTypovMineralnychVod_(),
 	listMnozstvaTypovMineralok_(), listPozadovanychMnozstievTypovMineralok_(),
 	listDodaviek_(), listNedostatocnychTypovMineralnychVod_(), datum_(), kontajner_(),
-	listNezrealizovanychPoziadaviek_()
+	listPoziadaviek_()
 {
 }
 
@@ -120,6 +120,26 @@ void Semestralka::Velkosklad::pridajNovyTypMineralky(string eanKod, string nazov
 	}
 
 	TypMineralnaVoda *typMineralnaVoda = new TypMineralnaVoda(eanKod, nazovMineralky, hladanyDodavatel);
+
+	//triedenie pocas vytvarania Dodavok. Netreba to riesit vzdy ked sa bude clovek dotazovat na vystup. 
+	for (int i = 0; i < listTypovMineralnychVod_.size(); i++)
+	{
+		//najprv podla dodavatela
+		if (typMineralnaVoda->dajDodavatela()->dajObchodnyNazov() <= listTypovMineralnychVod_[i]->dajDodavatela()->dajObchodnyNazov())
+		{
+			if (typMineralnaVoda->dajNazov() <= listTypovMineralnychVod_[i]->dajNazov() || i == listTypovMineralnychVod_.size())
+			{
+				listTypovMineralnychVod_.insert(typMineralnaVoda, i);
+				return;
+			}
+			else if (typMineralnaVoda->dajDodavatela()->dajObchodnyNazov() > listTypovMineralnychVod_[i + 1]->dajDodavatela()->dajObchodnyNazov())
+			{
+				listTypovMineralnychVod_.insert(typMineralnaVoda, i);
+				return;
+			}
+		}
+	}
+	//ak sa neda vopchat skor, vopcha sa nakoniec.
 	listTypovMineralnychVod_.add(typMineralnaVoda);
 }
 
@@ -185,6 +205,11 @@ void Semestralka::Velkosklad::zaevidovanieNovejPoziadavky(string obchodnyZakazni
 								poziadavka->pridaTypAMnozstvoMineralky(hladanaVoda, ks[i]);
 							}
 						}
+					}
+					if (poziadavka)
+					{
+						listPoziadaviek_.add(poziadavka);
+						return;
 					}
 				}
 			}

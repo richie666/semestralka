@@ -77,7 +77,7 @@ namespace Semestralka {
 		LinkedList<TypMineralnaVoda*> listNedostatocnychTypovMineralnychVod_;
 		Datum* datum_;
 		PriorityQueue_Heap<Poziadavka*> kontajner_;
-		LinkedList<Poziadavka*> listNezrealizovanychPoziadaviek_;
+		LinkedList<Poziadavka*> listPoziadaviek_;
 		string subor_s_evidenciou = "evidencia.txt";
 	};
 }

@@ -3,7 +3,7 @@
 using namespace Semestralka;
 
 Poziadavka::Poziadavka(Pobocka *pobocka, string deadlineDatum) :
-	pobocka_(pobocka), deadlineDatum_(deadlineDatum)
+pobocka_(pobocka), deadlineDatum_(deadlineDatum), stavPoziadavky(nerealizovana)
 {
 }
 Poziadavka::~Poziadavka()

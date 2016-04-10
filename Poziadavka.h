@@ -7,6 +7,10 @@
 using namespace DS;
 
 namespace Semestralka {
+	enum typPoziadavky{
+	zrealizovana =100,
+	nezrealizovana,
+	nerealizovana};
 	class Poziadavka {
 	public:
 		Poziadavka(Pobocka *pobocka, string deadlineDatum);
@@ -22,6 +26,7 @@ namespace Semestralka {
 		ArrayList<int> mnozstvo_;
 		Pobocka* pobocka_;
 		string deadlineDatum_;
+		typPoziadavky stavPoziadavky;
 	};
 }
 
