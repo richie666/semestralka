@@ -185,18 +185,36 @@ int main() {
 			string deadlineDatum;
 			getline(cin, deadlineDatum);
 			cout << "Zadali ste Datum Spotreby: " << deadlineDatum << "\n";
-			//while cyklus
-			cout << "Zadaj typ mineralnej vody: \n";
-			string ean;
-			getline(cin, ean);
-			cout << "Zadali ste typ mineralnej vody: " << ean << "\n";
+			
+			LinkedList<string> vody;
+			LinkedList<int> ks;
 
-			cout << "Zadaj mnozstvo mineralnej vody: \n";
-			string ks;
-			getline(cin, ks);
-			cout << "Zadali ste mnozstvo mineralnej vody: " << ks << "\n";
+			while (bool zadavanie = true)
+			{
+				cout << "Zadaj typ mineralnej vody: \n";
+				string ean;
+				getline(cin, ean);
+				cout << "Zadali ste typ mineralnej vody: " << ean << "\n";
+
+				cout << "Zadaj mnozstvo mineralnej vody: \n";
+				string ks;
+				getline(cin, ks);
+				cout << "Zadali ste mnozstvo mineralnej vody: " << ks << "\n";
+
+				cout << "Chcete zadat dalsi typ a mnozstvo mineralnej vody? Ano - 1, Nie - 2";
+				string zadatZnova;
+				getline(cin, zadatZnova);			
+				if (zadatZnova == "1") {
+					zadavanie = true;
+				}
+				else if (zadatZnova == "2") {
+					zadavanie = false;
+				} 
+				else cout << "Neplatny Vstup!";
+			}			
+			velkosklad->zaevidovanieNovejPoziadavky(zakaznik, pobocka, deadlineDatum, vody, ks);
 			break;
-			//velkosklad->zaevidovanieNovejPoziadavky(zakaznik, pobocka, deadlineDatum, listVod, listKs);
+			
 		}
 			case kontrolaPoziadaviekOdZakaznikovAMnozstvaVodNaSklade: {
 				cout << vypis[kontrolaPoziadaviekOdZakaznikovAMnozstvaVodNaSklade];
