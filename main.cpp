@@ -2,9 +2,11 @@
 #include<time.h>
 #include<string>
 #include"Array.h"
+#include"Velkosklad.h"
 
 using namespace std;
 using namespace DS;
+using namespace Semestralka;
 /*
 struct tm * DatePlusDays(struct tm* date, int days)
 {
@@ -77,7 +79,7 @@ int main() {
 	initVypis();
 	bool bezi = true;
 	Vypis();
-
+	Velkosklad velkosklad;
 	while (bezi)
 	{
 		cout << "Zadaj cislo";
@@ -85,22 +87,24 @@ int main() {
 		getline(cin, vstup);
 		switch (atoi(vstup.c_str()))
 		{
-			case novyDodavatel:	{
-				cout << vypis[novyDodavatel];
-				cout << "Zadaj Obchodny Nazov Dodavatela: \n";
-				string obchodnyNazov;
-				getline(cin, obchodnyNazov);
-				getline(cin, obchodnyNazov);
-				cout << "Zadali ste Obchodny Nazov Dodavatela: " << obchodnyNazov << " " << endl;
+		case novyDodavatel:
+		{
+			cout << vypis[novyDodavatel];
+			cout << "1. Pridaj noveho Dodavatela\n";
+			cout << "Zadaj Obchodny Nazov Dodavatela: \n";
+			string obchodnyNazov;
+			getline(cin, obchodnyNazov);
+			getline(cin, obchodnyNazov);
+			cout << "Zadali ste Obchodny Nazov Dodavatela: " << obchodnyNazov << " " << endl;
 
-				cout << "Zadaj Adresu Sidla Dodavatela: \n";
-				string adresaDodavatela;
-				getline(cin, adresaDodavatela);
-				cout << "Zadali ste Adresu Sidla Dodavatela: " << adresaDodavatela << "\n";
-				bezi = false;
-				break;
-			}
-			case novyZakaznik: {
+			cout << "Zadaj Adresu Sidla Dodavatela: \n";
+			string adresaDodavatela;
+			getline(cin, adresaDodavatela);
+			cout << "Zadali ste Adresu Sidla Dodavatela: " << adresaDodavatela << "\n";
+			velkosklad.pridajNovehoDodavatela(obchodnyNazov, adresaDodavatela);
+			break;
+		}
+		case novyZakaznik: {
 				cout << vypis[novyZakaznik];
 				cout << "Zadaj Obchodny Nazov Dodavatela: \n";
 				string obchodnyNazov;

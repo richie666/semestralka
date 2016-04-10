@@ -9,6 +9,7 @@
 #include "Structures\LinkedList.h"
 #include "Structures\Structure.h"
 #include "Structures\ArrayList.h"
+#include <fstream>
 
 using namespace std;
 using namespace DS;				//kvôli LinkedListu
@@ -21,7 +22,8 @@ namespace Semestralka {
 		Velkosklad();
 		virtual ~Velkosklad();
 
-		void pridajDodavatela(Dodavatel& dodavatel);
+		void nacitajSubor();
+		void pridajDodavatela();
 		void pridajZakaznika(Zakaznik& zakaznik);
 		void pridajPredajnu(Predajna& predajna, Zakaznik& zakaznik);
 		void pridajTypMineralnejVody(TypMineralnejVody& typMineralnejVody);
@@ -43,11 +45,12 @@ namespace Semestralka {
 	
 
 	private:
-		LinkedList<Dodavatel*>* zoznamDodavatelov_;
+		LinkedList<Dodavatel*> zoznamDodavatelov_;
 		LinkedList<Zakaznik*>* zoznamZakaznikov_;
 		ArrayList<TypMineralnejVody*>* zoznamTypovMineralnychVod_;
 		ArrayList<int>* zoznamMnozstvievTypov_;
 		LinkedList<Dodavka*>* zoznamDodaviek_;
 		LinkedList<Poziadavka*>* zoznamPoziadaviek_;
+		void pridajDodavatela(string nazov, string adresa);
 	};
 }

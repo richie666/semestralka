@@ -14,15 +14,24 @@ Velkosklad::Velkosklad() :
 
 Velkosklad::~Velkosklad()
 {
+	//vymazat dodavatelov pridanych v pridajNovehoDodavatela
+	for (Dodavatel *dodavatel:listDodavatelov_)
+	{
+		delete dodavatel;
+	}
+	//uvolnit miesto alokovane v liste.
+	listDodavatelov_.clear();
 }
 
 /*Pridanie nového dodávate¾a. Obchodný názov je unikátny.*/
-void Semestralka::Velkosklad::pridajNovehoDodavatela(Dodavatel &dodavatel)
+void Semestralka::Velkosklad::pridajNovehoDodavatela(string obchodnyNazov, string adresaSidla)
 {
 	bool duplicitaNazvu = false;
+	//aby objekt existoval v liste aj po skonceni funkcie pridajNovehoDodavatela. Takto je to 100%.
+	Dodavatel *dodavatel = new Dodavatel(obchodnyNazov, adresaSidla);
 	for (size_t i = 0; i < listDodavatelov_.size(); i++)
 	{
-		if (dodavatel.dajObchodnyNazov() == listDodavatelov_[i]->dajObchodnyNazov())
+		if (dodavatel->dajObchodnyNazov() == listDodavatelov_[i]->dajObchodnyNazov())
 		{
 			duplicitaNazvu = true;
 		}
@@ -30,7 +39,7 @@ void Semestralka::Velkosklad::pridajNovehoDodavatela(Dodavatel &dodavatel)
 
 	if (!duplicitaNazvu)
 	{
-		listDodavatelov_.add(&dodavatel);
+		listDodavatelov_.add(dodavatel);
 	}
 }
 
