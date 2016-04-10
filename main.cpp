@@ -85,14 +85,13 @@ int main() {
 				cout << "Zadaj Obchodny Nazov Dodavatela: \n";
 				string obchodnyNazov;
 				getline(cin, obchodnyNazov);
-				getline(cin, obchodnyNazov);
 				cout << "Zadali ste Obchodny Nazov Zakaznika: " << obchodnyNazov << "\n";
 
 				cout << "Zadaj Adresu Centraly Zakaznika: \n";
 				string adresaCentraly;
 				getline(cin, adresaCentraly);
 				cout << "Zadali ste Adresu Centraly Zakaznika: " << adresaCentraly << "\n";
-				bezi = false;
+				velkosklad->pridajNovehoZakaznika(obchodnyNazov, adresaCentraly);
 				break;
 			}
 			case novaPredajna: {
@@ -105,21 +104,24 @@ int main() {
 				cout << "Zadaj Zonu Predajne Zakaznika: \n";
 				string zonaPredajne;
 				getline(cin, zonaPredajne);
-				getline(cin, zonaPredajne);
+				int zonaPredajneInt = atoi(zonaPredajne.c_str());
+				if (zonaPredajneInt == 0)
+				{
+					cout << "neplatny vstup";
+				}
 				cout << "Zadali ste Zonu Predajne Zakaznika: " << zonaPredajne << "\n";				
 
 				cout << "Zadaj Adresu Predajne Zakaznika: \n";
 				string adresaPredajne;
 				getline(cin, adresaPredajne);
 				cout << "Zadali ste Adresu Predajne Zakaznika: " << adresaPredajne << "\n";
-				bezi = false;
+				velkosklad->pridajNovuPredajnu(zakaznik, zonaPredajneInt, adresaPredajne);
 				break;
 			}
 			case novyTypMineralnychVod: {
 				cout << vypis[novyTypMineralnychVod];
 				cout << "Zadaj EANkod Mineralnej Vody: \n";
 				string eanKod;
-				getline(cin, eanKod);
 				getline(cin, eanKod);
 				cout << "Zadali ste EANkod Mineralnej Vody: " << eanKod << "\n";
 
@@ -132,7 +134,7 @@ int main() {
 				string dodavatelMineralky;
 				getline(cin, dodavatelMineralky);
 				cout << "Zadali ste Dodavatela Mineralnej Vody: " << dodavatelMineralky << "\n";
-				bezi = false;
+				velkosklad->pridajNovyTypMineralky(eanKod, nazovMineralky, dodavatelMineralky);
 				break;
 			}
 			case novaDodavkaMineralnychVod: {

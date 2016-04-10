@@ -17,6 +17,6 @@ namespace Semestralka {
 	private:
 		string eanKod_;
 		string nazovMineralky_;
-		Dodavatel* dodavatelMineralky_;
+		string dodavatelMineralky_;
 	};
 }
