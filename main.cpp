@@ -142,12 +142,12 @@ int main() {
 				cout << "Zadaj Dodavatela Mineralnej Vody: \n";
 				string dodavatel;
 				getline(cin, dodavatel);
-				cout << "Zadali ste Typ Mineralnej Vody: " << dodavatel << "\n";
+				cout << "Zadali ste Dodavatela Mineralnej Vody: " << dodavatel << "\n";
 
-				cout << "Zadaj Typ Mineralnej Vody: \n";
+				cout << "Zadaj Typ Mineralnej Vody(eanKod): \n";
 				string eanKod;
 				getline(cin, eanKod);
-				cout << "Zadali ste Typ Mineralnej Vody: " << eanKod << "\n";
+				cout << "Zadali ste Typ Mineralnej Vody(eanKod): " << eanKod << "\n";
 
 				cout << "Zadaj Mnozstvo: \n";
 				string pocetKS;
