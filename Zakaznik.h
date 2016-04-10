@@ -16,15 +16,13 @@ namespace Semestralka {
 		Zakaznik(string obchodnyNazov, string adresaCentraly);
 		~Zakaznik();
 		void pridajNovuPobocku(int zonaPredajne, string adresaPredajne);
-		void pridajPoziadavku(Poziadavka poziadavka);
-		LinkedList<Poziadavka*> dajListPoziadaviek();
 		string dajObchodnyNazov();
 		string adresaCentraly();
+		LinkedList<Pobocka*> & dajListPobociek();
 
 	private:
 		string obchodnyNazov_;
 		string adresaCentraly_;
 		LinkedList<Pobocka*> listPobociek_;
-		LinkedList<Poziadavka*> listPoziadaviek_;
 	};
 }

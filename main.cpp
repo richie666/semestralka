@@ -169,19 +169,34 @@ int main() {
 		}
 		case zaevidovaniePoziadavkyOdZakaznika: 
 		{
+			//TODO: AK JE DEADLINE MENSI AKO DVA DNI OBJEDNAVKA SA NEREGISTRUJE
 			cout << vypis[zaevidovaniePoziadavkyOdZakaznika];
-			cout << "Zadaj Pobocku Zakaznika: \n";
+			cout << "Zadaj adresu zakaznika: \n";
+			string zakaznik;
+			getline(cin, zakaznik);
+			cout << "Zadali ste adresu Pobocky Zakaznika: " << zakaznik << "\n";
+
+			cout << "Zadaj adresu Pobocky zakaznika: \n";
 			string pobocka;
 			getline(cin, pobocka);
-			getline(cin, pobocka);
-			cout << "Zadali ste Pobocku Zakaznika: " << pobocka << "\n";
+			cout << "Zadali ste adresu Pobocky Zakaznika: " << pobocka << "\n";
 
 			cout << "Zadaj Datum Spotreby: \n";
 			string deadlineDatum;
 			getline(cin, deadlineDatum);
 			cout << "Zadali ste Datum Spotreby: " << deadlineDatum << "\n";
-			bezi = false;
+			//while cyklus
+			cout << "Zadaj typ mineralnej vody: \n";
+			string ean;
+			getline(cin, ean);
+			cout << "Zadali ste typ mineralnej vody: " << ean << "\n";
+
+			cout << "Zadaj mnozstvo mineralnej vody: \n";
+			string ks;
+			getline(cin, ks);
+			cout << "Zadali ste mnozstvo mineralnej vody: " << ks << "\n";
 			break;
+			//velkosklad->zaevidovanieNovejPoziadavky(zakaznik, pobocka, deadlineDatum, listVod, listKs);
 		}
 			case kontrolaPoziadaviekOdZakaznikovAMnozstvaVodNaSklade: {
 				cout << vypis[kontrolaPoziadaviekOdZakaznikovAMnozstvaVodNaSklade];

@@ -33,14 +33,9 @@ void Zakaznik::pridajNovuPobocku(int zonaPredajne, string adresaPredajne)
 	listPobociek_.add(pobocka);
 }
 
-void Zakaznik::pridajPoziadavku(Poziadavka poziadavka)
+LinkedList<Pobocka*> &Zakaznik::dajListPobociek()
 {
-	listPoziadaviek_.add(&poziadavka);
-}
-
-LinkedList<Poziadavka*> Zakaznik::dajListPoziadaviek()
-{
-	return listPoziadaviek_;
+	return listPobociek_;
 }
 
 string Semestralka::Zakaznik::dajObchodnyNazov()

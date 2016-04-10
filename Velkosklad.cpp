@@ -144,8 +144,56 @@ int Semestralka::Velkosklad::getIndexOf(TypMineralnaVoda & typMineralnejVody)
 	return listTypovMineralnychVod_.getIndexOf(&typMineralnejVody);
 }
 
-void Semestralka::Velkosklad::zaevidovanieNovejPoziadavky(Poziadavka &poziadavka)
+void Semestralka::Velkosklad::zaevidovanieNovejPoziadavky(string obchodnyZakaznik, string adresaPobocky, string deadline, LinkedList<string> &vody, LinkedList<int> &ks)
 {
+	Poziadavka *poziadavka = nullptr;
+	for (Zakaznik *zakaznik : listZakaznikov_)
+	{
+		if (zakaznik->dajObchodnyNazov() == obchodnyZakaznik)
+		{
+			for (Pobocka *pobocka : zakaznik->dajListPobociek())
+			{
+				if (pobocka->dajAdresu() == adresaPobocky)
+				{
+					for (int i = 0; i < vody.size(); i++)
+					{
+						if (ks[i] < 1)
+						{
+							cout << vody[i]<< " Minimalny pocet ks je 1";
+						}
+						else
+						{
+							TypMineralnaVoda *hladanaVoda = nullptr;
+							for (TypMineralnaVoda *voda : listTypovMineralnychVod_)
+							{
+								if (voda->dajEAN() == vody[i])
+								{
+									hladanaVoda = voda;
+								}
+							}
+
+							if (!hladanaVoda)
+							{
+								cout << "Voda: " << vody[i] << " neexistuje";
+							}
+							else
+							{
+								if (!poziadavka)
+								{
+									poziadavka = new Poziadavka(pobocka, deadline);
+								}
+								poziadavka->pridaTypAMnozstvoMineralky(hladanaVoda, ks[i]);
+							}
+						}
+					}
+				}
+			}
+			cout << "Zakaznik nema taku pobocku";
+			return;
+		}
+	}
+	cout << "Neexistujuci zakaznik";
+	return;
 	/*time_t cas = time(0);  //ziskaj cas
 	struct tm* aktualny = localtime(&cas);
 	int rok = aktualny->tm_year + 1900;

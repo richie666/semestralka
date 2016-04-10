@@ -54,7 +54,7 @@ namespace Semestralka {
 		void pridajNovyTypMineralky(string eanKod, string nazovMineralky, string dodavatelMineralky);
 		void zaevidovanieNovejDodavky(string eanKod, int pocetKS, string datum);
 		int getIndexOf(TypMineralnaVoda &typMineralnejVody);
-		void zaevidovanieNovejPoziadavky(Poziadavka &poziadavka);
+		void zaevidovanieNovejPoziadavky(string zakaznik, string adresaPobocky, string deadline, LinkedList<string>& vody, LinkedList<int> &ks);
 		void kontrolaPoziadaviekOdZakaznika();
 		void vypis(const string &vec);
 		void vyskladnenie();

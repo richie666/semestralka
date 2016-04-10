@@ -9,11 +9,11 @@ using namespace DS;
 namespace Semestralka {
 	class Poziadavka {
 	public:
-		Poziadavka(Pobocka &pobocka, string deadlineDatum);
+		Poziadavka(Pobocka *pobocka, string deadlineDatum);
 		virtual ~Poziadavka();
-		void pridaTypAMnozstvoMineralky(TypMineralnaVoda & typMineralnejVody, int mnozstvo);
+		void pridaTypAMnozstvoMineralky(TypMineralnaVoda * typMineralnejVody, int mnozstvo);
 		string dajDatumDodavky();
-		int dajMnozstvoTypuMineralky(TypMineralnaVoda &typMineralnejVody);
+		//int dajMnozstvoTypuMineralky(TypMineralnaVoda *typMineralnejVody);
 		ArrayList<TypMineralnaVoda*> dajListTypyMineralnejVody();
 		ArrayList<int> dajListMnozstvo();
 		Pobocka* dajPobocku();
