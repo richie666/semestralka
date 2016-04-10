@@ -47,14 +47,6 @@ int main() {
 
 		 if (volba == "1")
 		 {
-			cout << endl;
-			cout << "-------------------- Pridanie noveho DODAVATELA --------------------" << endl;
-			cout << "Obchodny nazov dodavatela:" << endl;
-			string nazov;
-			getline(cin, nazov);
-			cout << "Adresa sidla dodavatela:" << endl;
-			string adresa;
-			getline(cin, adresa);
 			//tieto dva riadky nemaju moc zmysel. Vytvoris object cez new a potom vytvoris klasicky objekt.
 			//Dodavatel* dodavatel = new Dodavatel(nazov, adresa);
 			//velkosklad->pridajDodavatela(*dodavatel); a navyse ta hodnota dodavatela sa spravi to ze sa vytvori kopia ktoru skopirujes do funkcie pridajDOdavatela a zanikne ti po skonceni tej funkcie. Takze v liste zoznamDodavatelov budes mat adresu na neplatny objekt.
@@ -65,7 +57,9 @@ int main() {
 			//velkosklad.pridajDodavatela(new Dodavatel(nazov, adresa));
 
 			//A ja by som to spravil takto. Nech sa mi new vola tam kde ho chcem vymazat.
-			velkosklad.pridajDodavatela(nazov, adresa);
+			//velkosklad.pridajDodavatela(nazov, adresa);
+
+			//A toto by som zmenil na pridaj dodavatela z terminalu
 		 }
 
 		 else if (volba == "2")

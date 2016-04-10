@@ -40,15 +40,55 @@ Semestralka::Velkosklad::~Velkosklad()
 	*/
 }
 
+void  Semestralka::Velkosklad::nacitajSubor()
+{
+	//neviem aky typ subru budes mat. Najlahsie je mat kazdy udaj na novom riadku. 
+	ifstream subor("MojStartovnySubor.txt");
+	if (subor.is_open())
+	{
+		string typ;
+		getline(subor, typ);
+		switch (atoi(typ.c_str()))
+		{
+		case 1:
+		{
+				string nazov;
+				getline(subor, nazov);
+				string adresa;
+				getline(subor, adresa);
+				pridajDodavatela(nazov, adresa);
+				break; 
+		}
+		default:
+		{
+				throw runtime_error("Nepodporovany vstyp zo suboru");
+				break;
+		}
+		}
+	}
+}
 
+void  Semestralka::Velkosklad::pridajDodavatela()
+{
+	cout << endl;
+	cout << "-------------------- Pridanie noveho DODAVATELA --------------------" << endl;
+	cout << "Obchodny nazov dodavatela:" << endl;
+	string nazov;
+	getline(cin, nazov);
+	cout << "Adresa sidla dodavatela:" << endl;
+	string adresa;
+	getline(cin, adresa);
+
+	pridajDodavatela(nazov, adresa);
+}
 
 /*Pridanie  nového  dodávate¾a.  Dodávate¾  je  charakterizovaný  obchodným  názvom
 a adresou sídla. Obchodný názov je unikátny.
 */
-void Semestralka::Velkosklad::pridajDodavatela(string obchodnyNazov, string adresaSidla)
+void Semestralka::Velkosklad::pridajDodavatela(string nazov, string adresa)
 {	
 	bool nachadzaSa = false;
-	Dodavatel *dodavatel = new Dodavatel(obchodnyNazov, adresaSidla);
+	Dodavatel *dodavatel = new Dodavatel(nazov, adresa);
 	for (size_t index = 0; index < zoznamDodavatelov_.size(); index++)
 	{
 		if (dodavatel->getObchodnyNazov().compare(zoznamDodavatelov_.operator[](index)->getObchodnyNazov()) == 0) //su rovnake
