@@ -1,5 +1,6 @@
 #pragma once
 #include<string>
+#include<iostream>
 #include "Pobocka.h"
 #include "LinkedList.h"
 #include "ArrayList.h"
@@ -14,9 +15,11 @@ namespace Semestralka {
 	public:
 		Zakaznik(string obchodnyNazov, string adresaCentraly);
 		~Zakaznik();
-		void pridajNovuPobocku(Pobocka &pobocka);
+		void pridajNovuPobocku(int zonaPredajne, string adresaPredajne);
 		void pridajPoziadavku(Poziadavka poziadavka);
 		LinkedList<Poziadavka*> dajListPoziadaviek();
+		string dajObchodnyNazov();
+		string adresaCentraly();
 
 	private:
 		string obchodnyNazov_;

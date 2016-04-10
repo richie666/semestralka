@@ -9,23 +9,28 @@ Semestralka::Zakaznik::Zakaznik(string obchodnyNazov, string adresaCentraly) :
 
 Semestralka::Zakaznik::~Zakaznik()
 {
+	//vymazat predajne pridanych v pridajPredajnu
+	for (Pobocka *pobocka : listPobociek_)
+	{
+		delete pobocka;
+	}
+	//uvolnit miesto alokovane v liste.
+	listPobociek_.clear();
 }
 
-void Zakaznik::pridajNovuPobocku(Pobocka &pobocka)
+void Zakaznik::pridajNovuPobocku(int zonaPredajne, string adresaPredajne)
 {
-	bool duplicitaNazvu = false;
+	bool duplicitaAdresy = false;
+	Pobocka *pobocka = new Pobocka(zonaPredajne, adresaPredajne);
 	for (size_t i = 0; i < listPobociek_.size(); i++)
 	{
-		if (pobocka.dajAdresu() == listPobociek_[i]->dajAdresu())
+		if (pobocka->dajAdresu() == listPobociek_[i]->dajAdresu())
 		{
-			duplicitaNazvu = true;
+			duplicitaAdresy = true;
+			cout << "Pobocka na danej adrese uz existuje!";
 		}
 	}
-
-	if (!duplicitaNazvu)
-	{
-		listPobociek_.add(&pobocka);
-	}
+	listPobociek_.add(pobocka);
 }
 
 void Zakaznik::pridajPoziadavku(Poziadavka poziadavka)
@@ -36,4 +41,14 @@ void Zakaznik::pridajPoziadavku(Poziadavka poziadavka)
 LinkedList<Poziadavka*> Zakaznik::dajListPoziadaviek()
 {
 	return listPoziadaviek_;
+}
+
+string Semestralka::Zakaznik::dajObchodnyNazov()
+{
+	return obchodnyNazov_;
+}
+
+string Semestralka::Zakaznik::adresaCentraly()
+{
+	return adresaCentraly_;
 }

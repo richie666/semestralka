@@ -1,5 +1,6 @@
 #pragma once
 #include "Dodavatel.h"
+#include <iostream>
 #include<string>
 
 using namespace std;
@@ -8,7 +9,7 @@ namespace Semestralka {
 	class TypMineralnaVoda {
 
 	public:
-		TypMineralnaVoda(string eanKod, string nazovMineralky, Dodavatel &dodavatelMineralky);
+		TypMineralnaVoda(string eanKod, string nazovMineralky, string dodavatelMineralky);
 		virtual ~TypMineralnaVoda();
 		string dajEAN();
 		string dajNazov();

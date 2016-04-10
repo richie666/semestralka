@@ -3,3 +3,5 @@ Release
 *.sdf
 *.opensdf
 *.v12.suo
+*.VC.opendb
+*.vs

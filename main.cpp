@@ -121,11 +121,16 @@ int main() {
 			}
 			case novaPredajna: {
 				cout << vypis[novaPredajna];
+				cout << "Zadaj Zakaznika: \n";
+				string zakaznik;
+				getline(cin, zakaznik);
+				cout << "Zadali ste Zakaznika: " << zakaznik << "\n";
+
 				cout << "Zadaj Zonu Predajne Zakaznika: \n";
 				string zonaPredajne;
 				getline(cin, zonaPredajne);
 				getline(cin, zonaPredajne);
-				cout << "Zadali ste Zonu Predajne Zakaznika: " << zonaPredajne << "\n";
+				cout << "Zadali ste Zonu Predajne Zakaznika: " << zonaPredajne << "\n";				
 
 				cout << "Zadaj Adresu Predajne Zakaznika: \n";
 				string adresaPredajne;

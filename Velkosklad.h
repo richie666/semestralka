@@ -26,9 +26,9 @@ namespace Semestralka {
 		Velkosklad();
 		virtual ~Velkosklad();
 		void pridajNovehoDodavatela(string obchodnyNazov, string adresaSidla);
-		void pridajNovehoZakaznika(Zakaznik &zakaznik);
-		void pridajNovuPredajnu(Pobocka &pobocka, Zakaznik &zakaznik);
-		void pridajNovyTypMineralky(TypMineralnaVoda &typMineralnejVody);
+		void pridajNovehoZakaznika(string obchodnyNazov, string adresaCentraly);
+		void pridajNovuPredajnu(string zakaznik, int zonaPredajne, string adresaPredajne);
+		void pridajNovyTypMineralky(string eanKod, string nazovMineralky, string dodavatelMineralky);
 		void zaevidovanieNovejDodavky(Dodavka &dodavka);
 		int getIndexOf(TypMineralnaVoda &typMineralnejVody);
 		void zaevidovanieNovejPoziadavky(Poziadavka &poziadavka);

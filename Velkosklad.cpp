@@ -15,12 +15,28 @@ Velkosklad::Velkosklad() :
 Velkosklad::~Velkosklad()
 {
 	//vymazat dodavatelov pridanych v pridajNovehoDodavatela
-	for (Dodavatel *dodavatel:listDodavatelov_)
+	for (Dodavatel *dodavatel : listDodavatelov_)
 	{
 		delete dodavatel;
 	}
 	//uvolnit miesto alokovane v liste.
 	listDodavatelov_.clear();
+
+	//vymazat zakaznikov pridanych v pridajNovehoZakaznika
+	for (Zakaznik *zakaznik : listZakaznikov_)
+	{
+		delete zakaznik;
+	}
+	//uvolnit miesto alokovane v liste.
+	listZakaznikov_.clear();
+
+	//vymazat typMineralnejVody pridanej v pridajNovyTypMV
+	for (TypMineralnaVoda *typMineralnaVoda : listTypovMineralnychVod_)
+	{
+		delete typMineralnaVoda;
+	}
+	//uvolnit miesto alokovane v liste.
+	listTypovMineralnychVod_.clear();
 }
 
 /*Pridanie nového dodávate¾a. Obchodný názov je unikátny.*/
@@ -34,31 +50,59 @@ void Semestralka::Velkosklad::pridajNovehoDodavatela(string obchodnyNazov, strin
 		if (dodavatel->dajObchodnyNazov() == listDodavatelov_[i]->dajObchodnyNazov())
 		{
 			duplicitaNazvu = true;
+			cout << "Dodavatel uz existuje!";
+			return;
 		}
 	}
-
-	if (!duplicitaNazvu)
-	{
-		listDodavatelov_.add(dodavatel);
-	}
+	listDodavatelov_.add(dodavatel);
 }
 
 /*Pridanie nového zákazníka.*/
-void Semestralka::Velkosklad::pridajNovehoZakaznika(Zakaznik &zakaznik)
-{
-	listZakaznikov_.add(&zakaznik);
+void Semestralka::Velkosklad::pridajNovehoZakaznika(string obchodnyNazov, string adresaCentraly)
+{	
+	bool duplicitaNazvu = false;
+	Zakaznik *zakaznik = new Zakaznik(obchodnyNazov, adresaCentraly);
+
+	for (size_t i = 0; i < listZakaznikov_.size(); i++)
+	{
+		if (zakaznik->dajObchodnyNazov() == listZakaznikov_[i]->dajObchodnyNazov())
+		{
+			duplicitaNazvu = true;
+			cout << "Zakaznik uz existuje!";
+			return;
+		}
+	}
+	listZakaznikov_.add(zakaznik);	
 }
 
-/*Pridanie novej predajne konkrétneho zákazníka.*/
-void Semestralka::Velkosklad::pridajNovuPredajnu(Pobocka &pobocka, Zakaznik &zakaznik)
+void Semestralka::Velkosklad::pridajNovuPredajnu(string zakaznik, int zonaPredajne, string adresaPredajne)
 {
-	zakaznik.pridajNovuPobocku(pobocka);
+	for (size_t i = 0; i < listZakaznikov_.size(); i++)
+	{
+		if (listZakaznikov_[i]->dajObchodnyNazov() == zakaznik) {
+			listZakaznikov_[i]->pridajNovuPobocku(zonaPredajne, adresaPredajne);
+			return;
+		}
+	}
+	cout << "Nenaslo Zakaznika";
 }
 
 /*Pridanie nového typu minerálnej vody.*/
-void Semestralka::Velkosklad::pridajNovyTypMineralky(TypMineralnaVoda &typMineralnejVody)
+void Semestralka::Velkosklad::pridajNovyTypMineralky(string eanKod, string nazovMineralky, string dodavatelMineralky)
 {
-	listTypovMineralnychVod_.add(&typMineralnejVody);
+	bool duplicitaTypu = false;
+	TypMineralnaVoda *typMineralnaVoda = new TypMineralnaVoda(eanKod, nazovMineralky, dodavatelMineralky);
+
+	for (size_t i = 0; i < listTypovMineralnychVod_.size(); i++)
+	{
+		if (typMineralnaVoda->dajEAN() == listTypovMineralnychVod_[i]->dajEAN())
+		{
+			duplicitaTypu = true;
+			cout << "Typ Mineralnej Vody uz existuje!";
+			return;
+		}
+	}
+	listTypovMineralnychVod_.add(typMineralnaVoda);
 }
 
 /*Zaevidovanie novej dodávky minerálnych vôd, ktorá príde od dodávate¾a.*/
