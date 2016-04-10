@@ -7,14 +7,13 @@ namespace Semestralka {
 	class Dodavka {
 
 	public:
-		Dodavka(string nazovDodavatela, string eanKod, int pocetKS, string datum);
+		Dodavka(TypMineralnaVoda* mineralka, int pocetKS, string datum);
 		virtual ~Dodavka();
-		string dajTypMineralnejVody();
+		TypMineralnaVoda* dajTypMineralnejVody();
 		int dajMnozstvo();
 	private:
-		string typMineralnejVody_;
+		TypMineralnaVoda* typMineralnejVody_;
 		int mnozstvo_;
 		string datumPlnenia_;
-		string dodavatel_;
 	};
 }

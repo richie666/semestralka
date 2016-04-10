@@ -2,7 +2,7 @@
 
 using namespace Semestralka;
 
-Semestralka::TypMineralnaVoda::TypMineralnaVoda(string eanKod, string nazovMineralky, string dodavatelMineralky) :
+Semestralka::TypMineralnaVoda::TypMineralnaVoda(string eanKod, string nazovMineralky, Dodavatel * dodavatelMineralky) :
 	eanKod_(eanKod), nazovMineralky_(nazovMineralky), dodavatelMineralky_(dodavatelMineralky)
 {
 }

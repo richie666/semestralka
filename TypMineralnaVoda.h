@@ -9,14 +9,14 @@ namespace Semestralka {
 	class TypMineralnaVoda {
 
 	public:
-		TypMineralnaVoda(string eanKod, string nazovMineralky, string dodavatelMineralky);
+		TypMineralnaVoda(string eanKod, string nazovMineralky, Dodavatel * dodavatelMineralky);
 		virtual ~TypMineralnaVoda();
 		string dajEAN();
 		string dajNazov();
-		Dodavatel* dajDodavatela();
+		Dodavatel *dajDodavatela();
 	private:
 		string eanKod_;
 		string nazovMineralky_;
-		string dodavatelMineralky_;
+		Dodavatel * dodavatelMineralky_;
 	};
 }

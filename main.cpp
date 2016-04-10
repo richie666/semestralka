@@ -80,107 +80,109 @@ int main() {
 			velkosklad->pridajNovehoDodavatela(obchodnyNazov, adresaDodavatela);
 			break;
 		}
-		case novyZakaznik: {
-				cout << vypis[novyZakaznik];
-				cout << "Zadaj Obchodny Nazov Dodavatela: \n";
-				string obchodnyNazov;
-				getline(cin, obchodnyNazov);
-				cout << "Zadali ste Obchodny Nazov Zakaznika: " << obchodnyNazov << "\n";
+		case novyZakaznik:
+		{
+			cout << vypis[novyZakaznik];
+			cout << "Zadaj Obchodny Nazov Dodavatela: \n";
+			string obchodnyNazov;
+			getline(cin, obchodnyNazov);
+			cout << "Zadali ste Obchodny Nazov Zakaznika: " << obchodnyNazov << "\n";
 
-				cout << "Zadaj Adresu Centraly Zakaznika: \n";
-				string adresaCentraly;
-				getline(cin, adresaCentraly);
-				cout << "Zadali ste Adresu Centraly Zakaznika: " << adresaCentraly << "\n";
-				velkosklad->pridajNovehoZakaznika(obchodnyNazov, adresaCentraly);
+			cout << "Zadaj Adresu Centraly Zakaznika: \n";
+			string adresaCentraly;
+			getline(cin, adresaCentraly);
+			cout << "Zadali ste Adresu Centraly Zakaznika: " << adresaCentraly << "\n";
+			velkosklad->pridajNovehoZakaznika(obchodnyNazov, adresaCentraly);
+			break;
+		}
+		case novaPredajna: 
+		{
+			cout << vypis[novaPredajna];
+			cout << "Zadaj Zakaznika: \n";
+			string zakaznik;
+			getline(cin, zakaznik);
+			cout << "Zadali ste Zakaznika: " << zakaznik << "\n";
+
+			cout << "Zadaj Zonu Predajne Zakaznika: \n";
+			string zonaPredajne;
+			getline(cin, zonaPredajne);
+			int zonaPredajneInt = atoi(zonaPredajne.c_str());
+			if (zonaPredajneInt == 0)
+			{
+				cout << "neplatny vstup";
+			}
+			cout << "Zadali ste Zonu Predajne Zakaznika: " << zonaPredajne << "\n";				
+
+			cout << "Zadaj Adresu Predajne Zakaznika: \n";
+			string adresaPredajne;
+			getline(cin, adresaPredajne);
+			cout << "Zadali ste Adresu Predajne Zakaznika: " << adresaPredajne << "\n";
+			velkosklad->pridajNovuPredajnu(zakaznik, zonaPredajneInt, adresaPredajne);
+			break;
+		}
+		case novyTypMineralnychVod: 
+		{
+			cout << vypis[novyTypMineralnychVod];
+			cout << "Zadaj EANkod Mineralnej Vody: \n";
+			string eanKod;
+			getline(cin, eanKod);
+			cout << "Zadali ste EANkod Mineralnej Vody: " << eanKod << "\n";
+
+			cout << "Zadaj Nazov Mineralnej Vody: \n";
+			string nazovMineralky;
+			getline(cin, nazovMineralky);
+			cout << "Zadali ste Nazov Mineralnej Vody: " << nazovMineralky << "\n";
+
+			cout << "Zadaj Dodavatela Mineralnej Vody: \n";
+			string dodavatelMineralky;
+			getline(cin, dodavatelMineralky);
+			cout << "Zadali ste Dodavatela Mineralnej Vody: " << dodavatelMineralky << "\n";
+			velkosklad->pridajNovyTypMineralky(eanKod, nazovMineralky, dodavatelMineralky);
+			break;
+		}
+		case novaDodavkaMineralnychVod:
+		{
+			cout << vypis[novaDodavkaMineralnychVod];
+
+			cout << "Zadaj Typ Mineralnej Vody(eanKod): \n";
+			string eanKod;
+			getline(cin, eanKod);
+			cout << "Zadali ste Typ Mineralnej Vody(eanKod): " << eanKod << "\n";
+
+			cout << "Zadaj Mnozstvo: \n";
+			string pocetKS;
+			getline(cin, pocetKS);
+			int pocetKsInt = atoi(pocetKS.c_str());
+			if (pocetKsInt == 0)
+			{
+				cout << "neplatny vstup";
 				break;
 			}
-			case novaPredajna: {
-				cout << vypis[novaPredajna];
-				cout << "Zadaj Zakaznika: \n";
-				string zakaznik;
-				getline(cin, zakaznik);
-				cout << "Zadali ste Zakaznika: " << zakaznik << "\n";
+			cout << "Zadali ste Mnozstvo: " << pocetKS << "\n";
 
-				cout << "Zadaj Zonu Predajne Zakaznika: \n";
-				string zonaPredajne;
-				getline(cin, zonaPredajne);
-				int zonaPredajneInt = atoi(zonaPredajne.c_str());
-				if (zonaPredajneInt == 0)
-				{
-					cout << "neplatny vstup";
-				}
-				cout << "Zadali ste Zonu Predajne Zakaznika: " << zonaPredajne << "\n";				
+			cout << "Zadaj Datum Plnenia: \n";
+			string datumPlnenia;
+			getline(cin, datumPlnenia);
+			cout << "Zadali ste Datum Plnenia: " << datumPlnenia << "\n";
+			velkosklad->zaevidovanieNovejDodavky(eanKod, pocetKsInt, datumPlnenia);
+			break;
+		}
+		case zaevidovaniePoziadavkyOdZakaznika: 
+		{
+			cout << vypis[zaevidovaniePoziadavkyOdZakaznika];
+			cout << "Zadaj Pobocku Zakaznika: \n";
+			string pobocka;
+			getline(cin, pobocka);
+			getline(cin, pobocka);
+			cout << "Zadali ste Pobocku Zakaznika: " << pobocka << "\n";
 
-				cout << "Zadaj Adresu Predajne Zakaznika: \n";
-				string adresaPredajne;
-				getline(cin, adresaPredajne);
-				cout << "Zadali ste Adresu Predajne Zakaznika: " << adresaPredajne << "\n";
-				velkosklad->pridajNovuPredajnu(zakaznik, zonaPredajneInt, adresaPredajne);
-				break;
-			}
-			case novyTypMineralnychVod: {
-				cout << vypis[novyTypMineralnychVod];
-				cout << "Zadaj EANkod Mineralnej Vody: \n";
-				string eanKod;
-				getline(cin, eanKod);
-				cout << "Zadali ste EANkod Mineralnej Vody: " << eanKod << "\n";
-
-				cout << "Zadaj Nazov Mineralnej Vody: \n";
-				string nazovMineralky;
-				getline(cin, nazovMineralky);
-				cout << "Zadali ste Nazov Mineralnej Vody: " << nazovMineralky << "\n";
-
-				cout << "Zadaj Dodavatela Mineralnej Vody: \n";
-				string dodavatelMineralky;
-				getline(cin, dodavatelMineralky);
-				cout << "Zadali ste Dodavatela Mineralnej Vody: " << dodavatelMineralky << "\n";
-				velkosklad->pridajNovyTypMineralky(eanKod, nazovMineralky, dodavatelMineralky);
-				break;
-			}
-			case novaDodavkaMineralnychVod: {
-				cout << vypis[novaDodavkaMineralnychVod];
-				cout << "Zadaj Dodavatela Mineralnej Vody: \n";
-				string dodavatel;
-				getline(cin, dodavatel);
-				cout << "Zadali ste Dodavatela Mineralnej Vody: " << dodavatel << "\n";
-
-				cout << "Zadaj Typ Mineralnej Vody(eanKod): \n";
-				string eanKod;
-				getline(cin, eanKod);
-				cout << "Zadali ste Typ Mineralnej Vody(eanKod): " << eanKod << "\n";
-
-				cout << "Zadaj Mnozstvo: \n";
-				string pocetKS;
-				getline(cin, pocetKS);
-				int pocetKsInt = atoi(pocetKS.c_str());
-				if (pocetKsInt == 0)
-				{
-					cout << "neplatny vstup";
-				}
-				cout << "Zadali ste Mnozstvo: " << pocetKS << "\n";
-
-				cout << "Zadaj Datum Plnenia: \n";
-				string datumPlnenia;
-				getline(cin, datumPlnenia);
-				cout << "Zadali ste Datum Plnenia: " << datumPlnenia << "\n";
-				velkosklad->zaevidovanieNovejDodavky(dodavatel, eanKod, pocetKsInt, datumPlnenia);
-				break;
-			}
-			case zaevidovaniePoziadavkyOdZakaznika: {
-				cout << vypis[zaevidovaniePoziadavkyOdZakaznika];
-				cout << "Zadaj Pobocku Zakaznika: \n";
-				string pobocka;
-				getline(cin, pobocka);
-				getline(cin, pobocka);
-				cout << "Zadali ste Pobocku Zakaznika: " << pobocka << "\n";
-
-				cout << "Zadaj Datum Spotreby: \n";
-				string deadlineDatum;
-				getline(cin, deadlineDatum);
-				cout << "Zadali ste Datum Spotreby: " << deadlineDatum << "\n";
-				bezi = false;
-				break;
-			}
+			cout << "Zadaj Datum Spotreby: \n";
+			string deadlineDatum;
+			getline(cin, deadlineDatum);
+			cout << "Zadali ste Datum Spotreby: " << deadlineDatum << "\n";
+			bezi = false;
+			break;
+		}
 			case kontrolaPoziadaviekOdZakaznikovAMnozstvaVodNaSklade: {
 				cout << vypis[kontrolaPoziadaviekOdZakaznikovAMnozstvaVodNaSklade];
 				//TODO Po vykonaní tejto operácie sa vypíše zoznam tých minerálnych vôd, ktorých množstvo na sklade je menšie

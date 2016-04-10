@@ -92,28 +92,51 @@ void Semestralka::Velkosklad::pridajNovuPredajnu(string zakaznik, int zonaPredaj
 void Semestralka::Velkosklad::pridajNovyTypMineralky(string eanKod, string nazovMineralky, string dodavatelMineralky)
 {
 	bool duplicitaTypu = false;
-	TypMineralnaVoda *typMineralnaVoda = new TypMineralnaVoda(eanKod, nazovMineralky, dodavatelMineralky);
+
+	Dodavatel *hladanyDodavatel = nullptr;
+	for (Dodavatel *dodavatel : listDodavatelov_)
+	{
+		if (dodavatel->dajObchodnyNazov() == dodavatelMineralky)
+		{
+			hladanyDodavatel = dodavatel;
+			break;
+		}
+	}
+	
+	if (hladanyDodavatel == nullptr)
+	{
+		cout << "Neexistujuci dodavatel";
+		return;
+	}
+
 
 	for (size_t i = 0; i < listTypovMineralnychVod_.size(); i++)
 	{
-		if (typMineralnaVoda->dajEAN() == listTypovMineralnychVod_[i]->dajEAN())
+		if (eanKod == listTypovMineralnychVod_[i]->dajEAN())
 		{
-			duplicitaTypu = true;
 			cout << "Typ Mineralnej Vody uz existuje!";
 			return;
 		}
 	}
+
+	TypMineralnaVoda *typMineralnaVoda = new TypMineralnaVoda(eanKod, nazovMineralky, hladanyDodavatel);
 	listTypovMineralnychVod_.add(typMineralnaVoda);
 }
 
 /*Zaevidovanie novej dodávky minerálnych vôd, ktorá príde od dodávate¾a.*/
-void Semestralka::Velkosklad::zaevidovanieNovejDodavky(string nazovDodavatela, string eanKod, int pocetKS, string datum)
+void Semestralka::Velkosklad::zaevidovanieNovejDodavky(string eanKod, int pocetKS, string datum)
 {
-	Dodavka *dodavka = new Dodavka(nazovDodavatela, eanKod, pocetKS, datum);	
-	listDodaviek_.add(dodavka);
-
-	//listDodaviek_.add(&dodavka);
-	//listMnozstvaTypovMineralok_[getIndexOf(*dodavka.dajTypMineralnejVody())] += dodavka.dajMnozstvo();
+	TypMineralnaVoda *hladanyTypVody = nullptr;
+	for (TypMineralnaVoda *typVody : listTypovMineralnychVod_)
+	{
+		if (typVody->dajEAN() == eanKod)
+		{
+			Dodavka *dodavka = new Dodavka(typVody, pocetKS, datum);
+			listDodaviek_.add(dodavka);
+			return;
+		}
+	}
+	cout << "neexistujuci typ vody";
 }
 
 int Semestralka::Velkosklad::getIndexOf(TypMineralnaVoda & typMineralnejVody)
