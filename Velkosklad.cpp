@@ -107,10 +107,13 @@ void Semestralka::Velkosklad::pridajNovyTypMineralky(string eanKod, string nazov
 }
 
 /*Zaevidovanie novej dodávky minerálnych vôd, ktorá príde od dodávate¾a.*/
-void Semestralka::Velkosklad::zaevidovanieNovejDodavky(Dodavka &dodavka)
+void Semestralka::Velkosklad::zaevidovanieNovejDodavky(string nazovDodavatela, string eanKod, int pocetKS, string datum)
 {
-	listDodaviek_.add(&dodavka);
-	listMnozstvaTypovMineralok_[getIndexOf(*dodavka.dajTypMineralnejVody())] += dodavka.dajMnozstvo();
+	Dodavka *dodavka = new Dodavka(nazovDodavatela, eanKod, pocetKS, datum);	
+	listDodaviek_.add(dodavka);
+
+	//listDodaviek_.add(&dodavka);
+	//listMnozstvaTypovMineralok_[getIndexOf(*dodavka.dajTypMineralnejVody())] += dodavka.dajMnozstvo();
 }
 
 int Semestralka::Velkosklad::getIndexOf(TypMineralnaVoda & typMineralnejVody)

@@ -139,27 +139,31 @@ int main() {
 			}
 			case novaDodavkaMineralnychVod: {
 				cout << vypis[novaDodavkaMineralnychVod];
+				cout << "Zadaj Dodavatela Mineralnej Vody: \n";
+				string dodavatel;
+				getline(cin, dodavatel);
+				cout << "Zadali ste Typ Mineralnej Vody: " << dodavatel << "\n";
+
 				cout << "Zadaj Typ Mineralnej Vody: \n";
-				string typMineralnejVody;
-				getline(cin, typMineralnejVody);
-				getline(cin, typMineralnejVody);
-				cout << "Zadali ste Typ Mineralnej Vody: " << typMineralnejVody << "\n";
+				string eanKod;
+				getline(cin, eanKod);
+				cout << "Zadali ste Typ Mineralnej Vody: " << eanKod << "\n";
 
 				cout << "Zadaj Mnozstvo: \n";
-				string mnozstvo;
-				getline(cin, mnozstvo);
-				cout << "Zadali ste Mnozstvo: " << mnozstvo << "\n";
+				string pocetKS;
+				getline(cin, pocetKS);
+				int pocetKsInt = atoi(pocetKS.c_str());
+				if (pocetKsInt == 0)
+				{
+					cout << "neplatny vstup";
+				}
+				cout << "Zadali ste Mnozstvo: " << pocetKS << "\n";
 
 				cout << "Zadaj Datum Plnenia: \n";
 				string datumPlnenia;
 				getline(cin, datumPlnenia);
 				cout << "Zadali ste Datum Plnenia: " << datumPlnenia << "\n";
-
-				cout << "Zadaj Dodavatela: \n";
-				string dodavatel;
-				getline(cin, dodavatel);
-				cout << "Zadali ste Dodavatela: " << dodavatel << "\n";
-				bezi = false;
+				velkosklad->zaevidovanieNovejDodavky(dodavatel, eanKod, pocetKsInt, datumPlnenia);
 				break;
 			}
 			case zaevidovaniePoziadavkyOdZakaznika: {

@@ -52,7 +52,7 @@ namespace Semestralka {
 		void pridajNovehoZakaznika(string obchodnyNazov, string adresaCentraly);
 		void pridajNovuPredajnu(string zakaznik, int zonaPredajne, string adresaPredajne);
 		void pridajNovyTypMineralky(string eanKod, string nazovMineralky, string dodavatelMineralky);
-		void zaevidovanieNovejDodavky(Dodavka &dodavka);
+		void zaevidovanieNovejDodavky(string nazovDodavatela, string eanKod, int pocetKS, string datum);
 		int getIndexOf(TypMineralnaVoda &typMineralnejVody);
 		void zaevidovanieNovejPoziadavky(Poziadavka &poziadavka);
 		void kontrolaPoziadaviekOdZakaznika();

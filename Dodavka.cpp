@@ -2,8 +2,8 @@
 
 using namespace Semestralka;
 
-Dodavka::Dodavka(TypMineralnaVoda &typMineralnejVody, int mnozstvo, Datum &datumPlnenia, Dodavatel &dodavatel) :
-	typMineralnejVody_(&typMineralnejVody), mnozstvo_(mnozstvo), datumPlnenia_(&datumPlnenia), dodavatel_(&dodavatel)
+Dodavka::Dodavka(string nazovDodavatela, string eanKod, int pocetKS, string datum) :
+	typMineralnejVody_(eanKod), mnozstvo_(pocetKS), datumPlnenia_(datum), dodavatel_(nazovDodavatela)
 {
 }
 
@@ -12,7 +12,7 @@ Dodavka::~Dodavka()
 {
 }
 
-TypMineralnaVoda * Semestralka::Dodavka::dajTypMineralnejVody()
+string Semestralka::Dodavka::dajTypMineralnejVody()
 {
 	return typMineralnejVody_;
 }
