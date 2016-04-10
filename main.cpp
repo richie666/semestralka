@@ -46,8 +46,8 @@ const size_t pocetMoznosti = 18;
 Array<string> vypis(pocetMoznosti);
 void initVypis()
 {
-	vypis[0] = (to_string(novyDodavatel)+". Pridaj noveho Dodavatela\n");
-	vypis[1] = (to_string(novyZakaznik)+". Pridaj noveho Zakaznika\n");
+	vypis[0] = (to_string(novyDodavatel) + ". Pridaj noveho Dodavatela\n");
+	vypis[1] = (to_string(novyZakaznik) + ". Pridaj noveho Zakaznika\n");
 	vypis[2] = (to_string(novaPredajna) + ". Pridanie novej Predajne konkretneho Zakaznika\n");
 	vypis[3] = (to_string(novyTypMineralnychVod) + ". Pridanie noveho Typu Mineralnych Vod\n");
 	vypis[4] = (to_string(novaDodavkaMineralnychVod) + ". Zaevidovanie novej Dodavky Mineralnych Vod\n");
@@ -83,9 +83,9 @@ int main() {
 		cout << "Zadaj cislo";
 		string vstup;
 		getline(cin, vstup);
-        switch (atoi(vstup.c_str()))
+		switch (atoi(vstup.c_str()))
 		{
-			case novyDodavatel:
+			case novyDodavatel:	{
 				cout << vypis[novyDodavatel];
 				cout << "Zadaj Obchodny Nazov Dodavatela: \n";
 				string obchodnyNazov;
@@ -99,7 +99,8 @@ int main() {
 				cout << "Zadali ste Adresu Sidla Dodavatela: " << adresaDodavatela << "\n";
 				bezi = false;
 				break;
-			case novyZakaznik:
+			}
+			case novyZakaznik: {
 				cout << vypis[novyZakaznik];
 				cout << "Zadaj Obchodny Nazov Dodavatela: \n";
 				string obchodnyNazov;
@@ -113,7 +114,8 @@ int main() {
 				cout << "Zadali ste Adresu Centraly Zakaznika: " << adresaCentraly << "\n";
 				bezi = false;
 				break;
-			case novaPredajna:
+			}
+			case novaPredajna: {
 				cout << vypis[novaPredajna];
 				cout << "Zadaj Zonu Predajne Zakaznika: \n";
 				string zonaPredajne;
@@ -127,7 +129,8 @@ int main() {
 				cout << "Zadali ste Adresu Predajne Zakaznika: " << adresaPredajne << "\n";
 				bezi = false;
 				break;
-			case novyTypMineralnychVod:
+			}
+			case novyTypMineralnychVod: {
 				cout << vypis[novyTypMineralnychVod];
 				cout << "Zadaj EANkod Mineralnej Vody: \n";
 				string eanKod;
@@ -146,7 +149,8 @@ int main() {
 				cout << "Zadali ste Dodavatela Mineralnej Vody: " << dodavatelMineralky << "\n";
 				bezi = false;
 				break;
-			case novaDodavkaMineralnychVod:
+			}
+			case novaDodavkaMineralnychVod: {
 				cout << vypis[novaDodavkaMineralnychVod];
 				cout << "Zadaj Typ Mineralnej Vody: \n";
 				string typMineralnejVody;
@@ -170,7 +174,8 @@ int main() {
 				cout << "Zadali ste Dodavatela: " << dodavatel << "\n";
 				bezi = false;
 				break;
-			case zaevidovaniePoziadavkyOdZakaznika:
+			}
+			case zaevidovaniePoziadavkyOdZakaznika: {
 				cout << vypis[zaevidovaniePoziadavkyOdZakaznika];
 				cout << "Zadaj Pobocku Zakaznika: \n";
 				string pobocka;
@@ -184,14 +189,16 @@ int main() {
 				cout << "Zadali ste Datum Spotreby: " << deadlineDatum << "\n";
 				bezi = false;
 				break;
-			case kontrolaPoziadaviekOdZakaznikovAMnozstvaVodNaSklade:
+			}
+			case kontrolaPoziadaviekOdZakaznikovAMnozstvaVodNaSklade: {
 				cout << vypis[kontrolaPoziadaviekOdZakaznikovAMnozstvaVodNaSklade];
 				//TODO Po vykonaní tejto operácie sa vypíše zoznam tých minerálnych vôd, ktorých množstvo na sklade je menšie
 				//ako je množstvo požadované zákazníkmi.Údaje musia by vypísané v abecednom poradí pod¾a názvu dodávate¾a
 				//a názvu minerálnej vody.Vo výpise musí by aj chýbajúce množstvo jednotlivých minerálnych vôd.
 				bezi = false;
 				break;
-			case vyskladnenie:
+			}
+			case vyskladnenie: {
 				cout << vypis[vyskladnenie];
 				//TODO V tomto prípade je nutné pripravi kontajner minerálnych vôd, ktoré	musia by doruèené nasledujúci deò.
 				//Doruèovanie prebieha pomocou auta, ktoré rozváža vody k jednotlivým zákazníkom v poradí pod¾a ich zonácie,
@@ -202,59 +209,72 @@ int main() {
 				//sa táto oznaèí za nezrealizovanú.Vyskladnené minerálne vody je nutné odpísa zo skladu.
 				bezi = false;
 				break;
-			case odovzdanieTovaruZakaznikovi:
+			}
+			case odovzdanieTovaruZakaznikovi: {
 				cout << vypis[odovzdanieTovaruZakaznikovi];
 				//TODO Z kontajnera, ktorý sa nachádza v aute, sa odoberie	najvrchnejšia položka.Týmto dôjde k zrealizovaniu konkrétnej požiadavky,
 				//t.j.v tomto	okamžiku sa požiadavka oznaèí za zrealizovanú.
 				bezi = false;
 				break;
-			case vypisanieAktualnehoMnozstvaJednotlivychTypobMVnaSklade:
+			}
+			case vypisanieAktualnehoMnozstvaJednotlivychTypobMVnaSklade: {
 				cout << vypis[vypisanieAktualnehoMnozstvaJednotlivychTypobMVnaSklade];
 				//TODO Údaje musia by vypísané v abecednom poradí pod¾a názvu dodávate¾a a názvu minerálnej vody.
 				bezi = false;
 				break;
-			case vyhladanieOdberatelaCOnajMnozstvoKonkrTMV:
+			}
+			case vyhladanieOdberatelaCOnajMnozstvoKonkrTMV: {
 				cout << vypis[vyhladanieOdberatelaCOnajMnozstvoKonkrTMV];
 				//TODO
 				bezi = false;
 				break;
-			case vyhladanieOdberatelaCOnajMnozstvoMVodKonkrDod:
+			}
+			case vyhladanieOdberatelaCOnajMnozstvoMVodKonkrDod: {
 				cout << vypis[vyhladanieOdberatelaCOnajMnozstvoMVodKonkrDod];
 				//TODO
 				bezi = false;
 				break;
-			case vypisanieVestkychPoziadOdVsetOdberKtSaNepodariloZreal:
+			}
+			case vypisanieVestkychPoziadOdVsetOdberKtSaNepodariloZreal: {
 				cout << vypis[vypisanieVestkychPoziadOdVsetOdberKtSaNepodariloZreal];
 				//TODO
 				bezi = false;
 				break;
-			case vyhladanieDodavPoKtMVbolZaDaneCOnajDopyt:
+			}
+			case vyhladanieDodavPoKtMVbolZaDaneCOnajDopyt: {
 				cout << vypis[vyhladanieDodavPoKtMVbolZaDaneCOnajDopyt];
 				//TODO
 				bezi = false;
 				break;
-			case ulozenieDoSuboruAktStavEv:
+			}
+			case ulozenieDoSuboruAktStavEv: {
 				cout << vypis[ulozenieDoSuboruAktStavEv];
 				//TODO
 				bezi = false;
 				break;
-			case nacitanieZoSuboruAktStavEv:
+			}
+			case nacitanieZoSuboruAktStavEv: {
 				cout << vypis[nacitanieZoSuboruAktStavEv];
 				//TODO
 				bezi = false;
 				break;
-			case vypisHlM:
+			}
+			case vypisHlM: {
 				cout << vypis[vypisHlM];
 				Vypis();
 				bezi = false;
 				break;
-			case koniec:
+			}
+			case koniec: {
 				cout << vypis[koniec];
 				bezi = false;
 				break;
-			default:
+			}
+			default: {
+				cout << "Zadali ste neplatny vstup!";
 				continue;
 				break;
+			}
 		}
 	}
 	return 0;
