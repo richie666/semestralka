@@ -25,7 +25,7 @@ namespace Semestralka {
 	public:
 		Velkosklad();
 		virtual ~Velkosklad();
-		void pridajNovehoDodavatela(Dodavatel &dodavatel);
+		void pridajNovehoDodavatela(string obchodnyNazov, string adresaSidla);
 		void pridajNovehoZakaznika(Zakaznik &zakaznik);
 		void pridajNovuPredajnu(Pobocka &pobocka, Zakaznik &zakaznik);
 		void pridajNovyTypMineralky(TypMineralnaVoda &typMineralnejVody);
