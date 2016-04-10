@@ -13,7 +13,7 @@ using namespace std;
 using namespace DS;
 
 Semestralka::Velkosklad::Velkosklad() :
-	zoznamDodavatelov_(new LinkedList<Dodavatel*>()), zoznamZakaznikov_(new LinkedList<Zakaznik*>()), 
+	zoznamZakaznikov_(new LinkedList<Zakaznik*>()), 
 	zoznamTypovMineralnychVod_(new ArrayList<TypMineralnejVody*>()), zoznamMnozstvievTypov_(new ArrayList<int>()), 
 	zoznamDodaviek_(new LinkedList<Dodavka*>()), zoznamPoziadaviek_(new LinkedList<Poziadavka*>())
 {
@@ -21,6 +21,23 @@ Semestralka::Velkosklad::Velkosklad() :
 
 Semestralka::Velkosklad::~Velkosklad()
 {
+	//Ked budes mazat tie new pointre
+	//nesmies zabudnut uvolnovat pamat
+	for (Dodavatel *dodavatel : zoznamDodavatelov_)
+	{
+		delete dodavatel; //ak je nieco cez new vytvarane pre dodavatela musis to vymazat v jeho ~
+	}
+	zoznamDodavatelov_.clear(); // nepotrebujes aby to bolo vytvarane cez new, pretoze je to vytvarane aj tak naraz s objektom Velkosklad
+	/*
+	for (Zakaznik *zakaznik : *zoznamZakaznikov_)
+	{
+		delete zakaznik; //ak je nieco cez new vytvarane pre zakaznika musis to vymazat v jeho ~
+	}
+	zoznamZakaznikov_->clear();
+	delete zoznamZakaznikov_; // ak to budes mat vytvarane cez new musis to aj vymazat
+
+	//... pre zvysok.
+	*/
 }
 
 
@@ -28,25 +45,25 @@ Semestralka::Velkosklad::~Velkosklad()
 /*Pridanie  nového  dodávate¾a.  Dodávate¾  je  charakterizovaný  obchodným  názvom
 a adresou sídla. Obchodný názov je unikátny.
 */
-void Semestralka::Velkosklad::pridajDodavatela(Dodavatel& dodavatel)
+void Semestralka::Velkosklad::pridajDodavatela(string obchodnyNazov, string adresaSidla)
 {	
 	bool nachadzaSa = false;
-	for (size_t index = 0; index < zoznamDodavatelov_->size(); index++)
+	Dodavatel *dodavatel = new Dodavatel(obchodnyNazov, adresaSidla);
+	for (size_t index = 0; index < zoznamDodavatelov_.size(); index++)
 	{
-		if (dodavatel.getObchodnyNazov().compare(zoznamDodavatelov_->operator[](index)->getObchodnyNazov()) == 0) //su rovnake
+		if (dodavatel->getObchodnyNazov().compare(zoznamDodavatelov_.operator[](index)->getObchodnyNazov()) == 0) //su rovnake
 		{
 			nachadzaSa = true;
-			cout << "Dodavatel " << dodavatel.getObchodnyNazov() << " sa uz v zozname nachadza." << endl;
+			cout << "Dodavatel " << dodavatel->getObchodnyNazov() << " sa uz v zozname nachadza." << endl;
 			break;
 		}
 	}
 	
 	if (!nachadzaSa) {
-		zoznamDodavatelov_->add(&dodavatel);
-		cout << "Dodavatel " << dodavatel.getObchodnyNazov() << " pridany." << endl;
+		zoznamDodavatelov_.add(dodavatel);
+		cout << "Dodavatel " << dodavatel->getObchodnyNazov() << " pridany." << endl;
 	}
 }
-
 
 /*Pridanie  nového  zákazníka, ktorý  je  charakterizovaný  obchodným  názvom  a adresou centrály.*/
 void Semestralka::Velkosklad::pridajZakaznika(Zakaznik& zakaznik)
@@ -134,9 +151,9 @@ void Semestralka::Velkosklad::zaevidujDodavkuMineralnychVod(Dodavka& dodavka)
 	}
 	
 	bool dodavatelSaNachadza = false;
-	for (int i = 0; i < zoznamDodavatelov_->size(); i++)
+	for (int i = 0; i < zoznamDodavatelov_.size(); i++)
 	{
-		if (zoznamDodavatelov_->operator[](i)->getObchodnyNazov().compare(dodavka.getDodavatel()->getObchodnyNazov()) == 0)
+		if (zoznamDodavatelov_.operator[](i)->getObchodnyNazov().compare(dodavka.getDodavatel()->getObchodnyNazov()) == 0)
 		{
 			dodavatelSaNachadza = true;
 			cout << "Dodavka od evidovaneho dodavatela bola zaevidovana." << endl;
@@ -147,7 +164,7 @@ void Semestralka::Velkosklad::zaevidujDodavkuMineralnychVod(Dodavka& dodavka)
 	if (!dodavatelSaNachadza)
 	{
 		Dodavatel& dodavatel = *dodavka.getDodavatel();
-		zoznamDodavatelov_->add(&dodavatel);
+		zoznamDodavatelov_.add(&dodavatel);
 		cout << "Dodavka bola zaevidovana spolu s novym dodavatelom." << endl;
 	}
 

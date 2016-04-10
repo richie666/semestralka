@@ -38,7 +38,7 @@ int main() {
 
 	 string volba;
 	 bool koniec = false;
-	 Velkosklad* velkosklad = new Velkosklad();
+	 Velkosklad velkosklad; //naoc new? nech zanikne sam ked skonci program. Nemusis volat delete.
 
 
 	 while (!koniec)
@@ -55,8 +55,17 @@ int main() {
 			cout << "Adresa sidla dodavatela:" << endl;
 			string adresa;
 			getline(cin, adresa);
-			Dodavatel* dodavatel = new Dodavatel(nazov, adresa);
-			velkosklad->pridajDodavatela(*dodavatel);
+			//tieto dva riadky nemaju moc zmysel. Vytvoris object cez new a potom vytvoris klasicky objekt.
+			//Dodavatel* dodavatel = new Dodavatel(nazov, adresa);
+			//velkosklad->pridajDodavatela(*dodavatel); a navyse ta hodnota dodavatela sa spravi to ze sa vytvori kopia ktoru skopirujes do funkcie pridajDOdavatela a zanikne ti po skonceni tej funkcie. Takze v liste zoznamDodavatelov budes mat adresu na neplatny objekt.
+			// uz ti tu len chybalo delete. Kedze som dal delete do destruktora tak:
+			
+			//Riesenie mozes zmenit funkcny prototyp z pridajDOdavatela(Dodavatel & dodavatel) na pridajDOdavatela(Dodavatel *dodavatel)
+			// a potom 
+			//velkosklad.pridajDodavatela(new Dodavatel(nazov, adresa));
+
+			//A ja by som to spravil takto. Nech sa mi new vola tam kde ho chcem vymazat.
+			velkosklad.pridajDodavatela(nazov, adresa);
 		 }
 
 		 else if (volba == "2")
@@ -70,7 +79,7 @@ int main() {
 			 string adresa;
 			 getline(cin, adresa);
 			 Zakaznik* zakaznik = new Zakaznik(nazov, adresa);
-			 velkosklad->pridajZakaznika(*zakaznik);
+			 velkosklad.pridajZakaznika(*zakaznik);
 		 }
 
 		 else if (volba == "3")
@@ -92,7 +101,7 @@ int main() {
 			 string adresaZ;
 			 getline(cin, adresaZ);
 			 Zakaznik* zakaznik = new Zakaznik(nazov, adresaZ);
-			 velkosklad->pridajPredajnu(*predajna, *zakaznik);
+			 velkosklad.pridajPredajnu(*predajna, *zakaznik);
 		 }
 
 		 else if (volba == "4")
@@ -114,7 +123,7 @@ int main() {
 			 getline(cin, adresaD);
 			 Dodavatel* dodavatel = new Dodavatel(nazovD, adresaD);
 			 TypMineralnejVody* typ = new TypMineralnejVody(eanKod, nazov, *dodavatel);
-			 velkosklad->pridajTypMineralnejVody(*typ);
+			 velkosklad.pridajTypMineralnejVody(*typ);
 		 }
 
 		 else if (volba == "5")
@@ -154,7 +163,7 @@ int main() {
 			 Datum* datum = new Datum(stoi(den), stoi(mesiac), stoi(rok));
 			 
 			 Dodavka* d = new Dodavka(*typ, stoi(mnozstvo), *datum, *dodavatel);
-			 velkosklad->zaevidujDodavkuMineralnychVod(*d);
+			 velkosklad.zaevidujDodavkuMineralnychVod(*d);
 		 }
 
 

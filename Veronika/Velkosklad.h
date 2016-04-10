@@ -21,7 +21,7 @@ namespace Semestralka {
 		Velkosklad();
 		virtual ~Velkosklad();
 
-		void pridajDodavatela(Dodavatel& dodavatel);
+		void pridajDodavatela(string obchodnyNazov, string adresaSidla);
 		void pridajZakaznika(Zakaznik& zakaznik);
 		void pridajPredajnu(Predajna& predajna, Zakaznik& zakaznik);
 		void pridajTypMineralnejVody(TypMineralnejVody& typMineralnejVody);
@@ -43,7 +43,7 @@ namespace Semestralka {
 	
 
 	private:
-		LinkedList<Dodavatel*>* zoznamDodavatelov_;
+		LinkedList<Dodavatel*> zoznamDodavatelov_;
 		LinkedList<Zakaznik*>* zoznamZakaznikov_;
 		ArrayList<TypMineralnejVody*>* zoznamTypovMineralnychVod_;
 		ArrayList<int>* zoznamMnozstvievTypov_;
